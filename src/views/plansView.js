@@ -1,6 +1,7 @@
 class PlanView {
     _parentElement = document.querySelector('.side-B');
     _sideBarEl = document.querySelector('.side-A')
+    planPrice;
     monthlyPlan = {};
     yearlyPlan = {};
 
@@ -57,7 +58,7 @@ class PlanView {
         <form id="form-plan" class="plan-monthly flex-col gap-10">
           <div class=" lg:flex lg:gap-5">
           <div class="mb-5 lg:flex lg:flex-col lg:w-1/3 lg:hover:bg-blue-50">
-            <input id="arcade" value="Arcade" name="plan" class="peer sr-only" type="radio">
+            <input id="arcade" value="Arcade" name="plan" data-price="9" class="peer sr-only" type="radio">
             <label for="arcade" class="monthly p-2 flex lg:flex-col lg:flex-1 lg:h-[140px] lg:justify-around lg:items-start items-center gap-3.5 hover:border-blue-400 rounded cursor-pointer border border-gray-200 peer-checked:border-blue-600">
               <img class="size-7" src="/assets/images/icon-arcade.svg" alt="">
               <div class="flex flex-col">
@@ -68,7 +69,7 @@ class PlanView {
           </div>
 
           <div class="mb-5 lg:flex lg:flex-col lg:w-1/3 lg:hover:bg-blue-50">
-            <input id="advanced" value="Advanced" name="plan" class="peer sr-only" type="radio">
+            <input id="advanced" value="Advanced" data-price="12" name="plan" class="peer sr-only" type="radio">
             <label for="advanced" class="monthly p-2 flex lg:flex-col lg:flex-1 lg:h-[140px] lg:justify-around lg:items-start items-center gap-3.5 hover:border-blue-400 rounded cursor-pointer border border-gray-200 peer-checked:border-blue-600">
               <img class="size-7" src="/assets/images/icon-advanced.svg" alt="">
               <div class="flex flex-col">
@@ -79,7 +80,7 @@ class PlanView {
           </div>
 
           <div class="mb-5 lg:flex lg:flex-col lg:w-1/3 lg:hover:bg-blue-50">
-            <input id="pro" value="Pro" name="plan" class="peer sr-only" type="radio">
+            <input id="pro" value="Pro" data-price="15" name="plan" class="peer sr-only" type="radio">
             <label for="pro" class="monthly p-2 flex lg:flex-col lg:flex-1  lg:h-[140px] lg:justify-around lg:items-start items-center gap-3.5 hover:border-blue-400 rounded cursor-pointer border border-gray-200 peer-checked:border-blue-600">
               <img class="size-7" src="/assets/images/icon-pro.svg" alt="">
               <div class="flex flex-col">
@@ -108,7 +109,7 @@ class PlanView {
           <form id="form-plan" class="plan-yearly flex-col gap-10">
           <div class="lg:flex lg:gap-5">
           <div class="mb-2.5 lg:flex lg:flex-col lg:w-1/3 lg:hover:bg-blue-50">
-          <input id="arcade-yearly" value="Arcade" name="plan" class="peer sr-only" type="radio">
+          <input id="arcade-yearly" value="Arcade" data-price="90" name="plan" class="peer sr-only" type="radio">
           <label for="arcade-yearly" class="yearly flex lg:flex-col lg:flex-1  lg:h-[140px] lg:justify-around lg:items-start p-2 items-center gap-3.5 hover:border-blue-400 rounded cursor-pointer border border-gray-200 peer-checked:border-blue-600">
           <img class="size-7" src="/assets/images/icon-arcade.svg" alt="">
           <div class="flex flex-col">
@@ -120,7 +121,7 @@ class PlanView {
           </div>
           
           <div class="mb-2.5 lg:flex lg:flex-col lg:w-1/3 lg:hover:bg-blue-50">
-          <input id="advanced-yearly" value="Advanced" name="plan" class="peer sr-only" type="radio">
+          <input id="advanced-yearly" data-price="120" value="Advanced" name="plan" class="peer sr-only" type="radio">
           <label for="advanced-yearly" class="yearly flex lg:flex-col lg:flex-1 lg:h-[140px] lg:justify-around lg:items-start p-2 items-center gap-3.5 hover:border-blue-400 rounded cursor-pointer border border-gray-200 peer-checked:border-blue-600">
           <img class="size-7" src="/assets/images/icon-advanced.svg" alt="">
           <div class="flex flex-col">
@@ -132,7 +133,7 @@ class PlanView {
           </div>
           
           <div class="mb-2.5 lg:flex lg:flex-col lg:w-1/3 lg:hover:bg-blue-50">
-          <input id="pro-yearly" value="Pro" name="plan" class="yearly peer sr-only" type="radio">
+          <input id="pro-yearly" data-price="150" value="Pro" name="plan" class="yearly peer sr-only" type="radio">
           <label for="pro-yearly" class=" p-2 items-center flex lg:flex-col lg:flex-1 lg:h-[140px] lg:justify-around lg:items-start gap-3.5 hover:border-blue-400 rounded cursor-pointer border border-gray-200 peer-checked:border-blue-600">
           <img class="size-7" src="/assets/images/icon-pro.svg" alt="">
           <div class="flex flex-col">
@@ -195,6 +196,17 @@ class PlanView {
         })
       })
 
+    }
+
+    addhandlerPicked() {
+    this._parentElement.addEventListener('click', (e) => {
+
+    const inputChecked = e.target.closest('input[name="plan"]:checked')
+    if (!inputChecked) return
+    this.planPrice = inputChecked.dataset.price
+    console.log(this.planPrice);
+    })
+        return this.planPrice
     }
 
     addHandlerSubmit(handler) {

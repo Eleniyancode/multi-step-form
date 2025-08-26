@@ -4,6 +4,7 @@ export const formState = {
     yearPlan: {},
     addsOnYearly: [],
     addsOnMonthly: [],
+    planPrice: '',
 
     completed: false
 }

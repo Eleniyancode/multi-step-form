@@ -13,6 +13,7 @@ function controlStepOne() {
     personalInfoView.render();
 }
 
+let text;
 function controlStepTwo() {
     // sideView.renderStep()
     plansView.updateSideBar()
@@ -20,45 +21,67 @@ function controlStepTwo() {
     plansView.handleSwitchPlan()
     plansView.addHandlerSubmit(controlStepThree)
     plansView.addHandlerBackBtnClick(controlStepOne)
-    
+
+    plansView.addhandlerPicked();
+    // console.log(plansView.planPrice);
+    // model.formState.planPrice = plansView.planPrice;
     model.formState.personalInfo = personalInfoView.personalInfoData;
     console.log(model.formState.personalInfo);
 }
 
-function controlStepThree() {
-    // sideView.renderStep()
-    addOnsView.updateSideBar()
-    const monthlyDuration = plansView.monthlyPlan.duration
-    if (monthlyDuration) addOnsView.render(monthlyDuration)
-    addOnsView.addHandlerSubmit(controlStepFour);
-    addOnsView.addHandlerBackBtnClick(controlStepTwo);    
-
-    //getting info on month data and yearly data
+// function controlHandleClick() {
+    //     plansView.handlePicked()
+    // }
+    
+    function controlStepThree() {
+        // sideView.renderStep()
+        addOnsView.updateSideBar()
+        const monthlyDuration = plansView.monthlyPlan.duration
+        if (monthlyDuration) addOnsView.render(monthlyDuration)
+            addOnsView.addHandlerSubmit(controlStepFour);
+        addOnsView.addHandlerBackBtnClick(controlStepTwo);    
+        
+        //getting info on month data and yearly data
         model.formState.monthlyPlan = plansView.monthlyPlan;
         model.formState.yearPlan = plansView.yearlyPlan;
-        console.log(model.formState.monthlyPlan, model.formState.yearPlan);        
+        console.log(model.formState.monthlyPlan, model.formState.yearPlan);
+        
+        // console.log(plansView.planPrice);
+        model.formState.planPrice = plansView.planPrice
+        console.log(model.formState.planPrice);
 }
 
 
 function controlStepFour() {
+    console.log(addOnsView.addOns);
+    let addOnsValue = [];
+    addOnsView.addOns.forEach(addOn => addOnsValue.push(addOn.addOn));
+    console.log(addOnsValue);
+    let addOnsPrice = [];
+    addOnsView.addOns.forEach(addOn => addOnsPrice.push(addOn.price));
+    let totalAddOnsPrice = addOnsPrice.reduce((acc, curr) => acc + Number(curr), 0)
+    console.log(totalAddOnsPrice);
+
     const planType = model.formState.monthlyPlan.duration
     const monthlyplan = model.formState.monthlyPlan.plan
     const yearlyPlan = model.formState.yearPlan.plan
     const yearlyDuration = model.formState.yearPlan.duration
-    const addOns = addOnsView.addOns
+    const planPrice = model.formState.planPrice
+    totalAddOnsPrice += Number(planPrice)  
     if (planType === 'monthly') {
         // sideView.renderStep()
         summary.updateSideBar()
-        summary.render(planType, monthlyplan, addOns);
+        summary.render(planType, monthlyplan, addOnsValue, totalAddOnsPrice);
 
     }else if (planType === 'yearly') {
         // console.log(addOns);
         // sideView.renderStep()
         summary.updateSideBar()
-        summary.render(planType, yearlyPlan, addOns)
+        summary.render(planType, yearlyPlan, addOnsValue, totalAddOnsPrice)
     }
     summary.addHandlerSubmit(controlFinalStep);
     summary.addHandlerBackBtnClick(controlStepThree);
+    summary.addHandlerChangeBtnClick(controlStepTwo)
 
     //getting addons data
     model.formState.addsOnYearly = addOnsView.addOns

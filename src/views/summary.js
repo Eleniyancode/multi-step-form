@@ -48,7 +48,7 @@ class Summary {
       </div>
       `
     }
-    render(planType, plan, addOns) {
+    render(planType, plan, addOns, totalAddOnsPrice) {
         this._parentElement.innerHTML = `
         ${planType === 'monthly' ?
           `
@@ -60,7 +60,7 @@ class Summary {
           <div class="flex justify-between items-center border-b border-b-gray-300 pb-2">
             <div>
               <p class="text-blue-600 font-bold">${plan} <span>(Monthly)</span></p>
-              <button class="underline text-gray-400">Change</button>
+              <button class="change-btn underline hover:text-blue-500 cursor-pointer text-gray-400">Change</button>
             </div>
              <p class="text-blue-900 font-bold">$${
               plan === 'Arcade' ? 9 :
@@ -85,18 +85,17 @@ class Summary {
         </div>
         <div class="mt-8 flex justify-between px-5">
           <p class="text-gray-400">Total(per month)</p>
-          <p class="text-blue-900 font-bold">+$12/mo</p>
+          <p class="text-blue-900 font-bold">$${totalAddOnsPrice}/mo</p>
         </div>
 
         <div class="absolute bottom-0 w-[85%] flex justify-between items-center p-4 px-4 bg-white mx-auto">
           <p class="back-btn text-gray-400 cursor-pointer">Go Back</p>
           <button class="p-2 confirm-btn rounded cursor-pointer bg-blue-600 text-white">Confirm</button>
         </div>
-    </div>
-          `
+    </div>`
           :
           planType === 'yearly' ?
-          `          <div class="bg-white w-[95%] animate-fade-in lg:h-[100%] lg:relative mx-auto p-5 rounded-2xl -mt-15 lg:mt-0">
+          `<div class="bg-white w-[95%] animate-fade-in lg:h-[100%] lg:relative mx-auto p-5 rounded-2xl -mt-15 lg:mt-0">
         <h1 class="font-bold text-2xl text-blue-900 mb-2">Finishing up</h1>
         <p class="text-gray-400 mb-4">Double-check everything looks OK before confirming</p>
         
@@ -104,7 +103,7 @@ class Summary {
           <div class="flex justify-between items-center border-b border-b-gray-300 pb-2">
             <div>
               <p class="text-blue-600 font-bold">${plan} <span>(Yearly)</span></p>
-              <button class="underline text-gray-400">Change</button>
+              <button class="underline change-btn hover:text-blue-400 cursor-pointer text-gray-400">Change</button>
             </div>
             <p class="text-blue-900 font-bold plan">$${
               plan === 'Arcade' ? 90 :
@@ -128,7 +127,7 @@ class Summary {
         </div>
         <div class="mt-8 flex justify-between px-5">
           <p class="text-gray-400">Total(per year)</p>
-          <p class="text-blue-900 font-bold">+$<span class="total"></span>/yr</p>
+          <p class="text-blue-900 font-bold">$<span class="total">${totalAddOnsPrice}</span>/yr</p>
         </div>
 
         <div class="absolute bottom-0 left-5 w-[85%] flex justify-between items-center p-4 px-4 bg-white mx-auto">
@@ -155,6 +154,14 @@ class Summary {
     const backBtn = this._parentElement.querySelector('.back-btn')
     if (!backBtn) return
     backBtn.addEventListener('click', function() {
+        handler()
+    })
+  }
+
+  addHandlerChangeBtnClick(handler) {
+    const changeBtn = this._parentElement.querySelector('.change-btn')
+    if (!changeBtn) return
+    changeBtn.addEventListener('click', function() {
         handler()
     })
   }

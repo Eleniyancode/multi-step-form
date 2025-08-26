@@ -56,7 +56,7 @@ class AddOnsView {
       planType === 'monthly' ? 
       `<form class="form-monthly flex flex-col gap-4">
           <label for="online-service" class="flex gap-4 items-center hover:border p-2 hover:border-blue-500 peer-checked:border-blue-600 border-gray-300 rounded border">
-          <input id="online-service" name="addOns" data-value="1" value="Online-service" class="sr-only peer" type="checkbox">
+          <input id="online-service" name="addOns" data-price="1" value="Online-service" class="sr-only peer" type="checkbox">
           <div class="peer-checked:bg-blue-800 p-1.5 rounded">
             <img src="/assets/images/icon-checkmark.svg" alt="">
           </div>
@@ -70,7 +70,7 @@ class AddOnsView {
         </label>
 
         <label for="large-storage" class="flex gap-4 items-center hover:border p-2 hover:border-blue-500 peer-checked:border-blue-600 border-gray-300 rounded border">
-          <input id="large-storage" name="addOns" data-value="1" value="Large-storage" class="sr-only peer" type="checkbox">
+          <input id="large-storage" name="addOns" data-price="2" value="Large-storage" class="sr-only peer" type="checkbox">
           <div class="peer-checked:bg-blue-800 p-1.5 rounded">
             <img src="/assets/images/icon-checkmark.svg" alt="">
           </div>
@@ -79,12 +79,12 @@ class AddOnsView {
               <p class="block font-bold">Large storage</p>
               <p class="text-[12px] text-gray-400">Extar 1TB of cloud save</p>
             </div>
-            <p class="text-blue-400">+$1/mo</p>
+            <p class="text-blue-400">+$2/mo</p>
           </div>
         </label>
 
         <label for="customizable-profile" class="flex gap-4 items-center hover:border p-2 hover:border-blue-500 peer-checked:border-blue-600 border-gray-300 rounded border">
-          <input id="customizable-profile" data-value="1" name="addOns" value="Customizable profile" class="sr-only peer" type="checkbox">
+          <input id="customizable-profile" data-price="2" name="addOns" value="Customizable profile" class="sr-only peer" type="checkbox">
           <div class="peer-checked:bg-blue-800 p-1.5 rounded">
             <img src="/assets/images/icon-checkmark.svg" alt="">
           </div>
@@ -93,7 +93,7 @@ class AddOnsView {
               <p class="block font-bold">Customizable profile</p>
               <p class="text-[12px] text-gray-400">Custom theme on your profile</p>
             </div>
-            <p class="text-blue-400">+$1/mo</p>
+            <p class="text-blue-400">+$2/mo</p>
           </div>
         </label>
 
@@ -107,7 +107,7 @@ class AddOnsView {
     `
     <form class="form-yearly flex flex-col gap-4">
           <label for="online-service" class="flex gap-4 items-center hover:border p-2 hover:border-blue-500 peer-checked:border-blue-600 border-gray-300 rounded border">
-          <input id="online-service" name="addOns" data="10" value="Online-service" class="sr-only peer" type="checkbox">
+          <input id="online-service" name="addOns" data-price="10" value="Online-service" class="sr-only peer" type="checkbox">
           <div class="peer-checked:bg-blue-800 p-1.5 rounded">
             <img src="/assets/images/icon-checkmark.svg" alt="">
           </div>
@@ -121,7 +121,7 @@ class AddOnsView {
         </label>
 
         <label for="large-storage" class="flex gap-4 items-center hover:border p-2 hover:border-blue-500 peer-checked:border-blue-600 border-gray-300 rounded border">
-          <input id="large-storage" name="addOns" data="20" value="Large-storage" class="sr-only peer" type="checkbox">
+          <input id="large-storage" name="addOns" data-price="20" value="Large-storage" class="sr-only peer" type="checkbox">
           <div class="peer-checked:bg-blue-800 p-1.5 rounded">
             <img src="/assets/images/icon-checkmark.svg" alt="">
           </div>
@@ -135,7 +135,7 @@ class AddOnsView {
         </label>
 
         <label for="customizable-profile" class="flex gap-4 items-center hover:border p-2 hover:border-blue-500 peer-checked:border-blue-600 border-gray-300 rounded border">
-          <input id="customizable-profile" name="addOns" data-value="20" value="Customizable profile" class="sr-only peer" type="checkbox">
+          <input id="customizable-profile" name="addOns" data-price="20" value="Customizable profile" class="sr-only peer" type="checkbox">
           <div class="peer-checked:bg-blue-800 p-1.5 rounded">
             <img src="/assets/images/icon-checkmark.svg" alt="">
           </div>
@@ -166,7 +166,9 @@ class AddOnsView {
       formMonthly.addEventListener('submit', (e) => {
         e.preventDefault()
         const checkboxes = formMonthly.querySelectorAll('input[name="addOns"]:checked')
-        this.addOns = Array.from(checkboxes).map(cb => cb.value)
+        this.addOns = Array.from(checkboxes).map(cb => {
+           return {addOn: cb.value, price: cb.dataset.price }
+      })
         // console.log(addOns);
         handler()
       })
@@ -175,10 +177,12 @@ class AddOnsView {
       form.addEventListener('submit', (e) => {
           e.preventDefault()
           const checkboxes = form.querySelectorAll('input[name="addOns"]:checked')
-          this.addOns = Array.from(checkboxes).map(cb => cb.value)
+          this.addOns = Array.from(checkboxes).map(cb => {
+            return {addOn: cb.value, price: cb.dataset.price}
+          })
           // console.log(addOns);
           handler()
-      })
+        })
     }
   }
 
