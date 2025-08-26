@@ -16,7 +16,7 @@ class PlanView {
           >
             1
           </p>
-          <p class="hidden lg:block text-white text-[12px]"><span>STEP 1</span><br />YOUR INFO</p>
+          <p class="hidden lg:block text-white hover:text-gray-200 text-[12px]"><span>STEP 1</span><br />YOUR INFO</p>
         </div>
 
         <div class="flex gap-5 cursor-pointer step-two-btn">
@@ -25,7 +25,7 @@ class PlanView {
           >
             2
           </p>
-          <p class="hidden lg:block text-white text-[12px]"><span>STEP 2</span><br />SELECT PLAN</p>
+          <p class="hidden lg:block text-white hover:text-gray-200 text-[12px]"><span>STEP 2</span><br />SELECT PLAN</p>
         </div>
 
         <div class="flex gap-5 cursor-pointer step-three-btn">
@@ -34,7 +34,7 @@ class PlanView {
           >
             3
           </p>
-          <p class="hidden lg:block text-white text-[12px]"><span>STEP 3</span><br />ADD-ONS</p>
+          <p class="hidden lg:block text-white hover:text-gray-200 text-[12px]"><span>STEP 3</span><br />ADD-ONS</p>
         </div>
 
         <div class="flex gap-5 cursor-pointer step-four-btn">
@@ -43,7 +43,7 @@ class PlanView {
           >
             4
           </p>
-          <p class="hidden lg:block text-white text-[12px]"><span>STEP 4</span><br />SUMMARY</p>
+          <p class="hidden lg:block text-white hover:text-gray-200 text-[12px]"><span>STEP 4</span><br />SUMMARY</p>
         </div>
       </div>
       `
@@ -162,8 +162,8 @@ class PlanView {
           
 
         <div class="absolute bottom-0 w-[85%] lg:mt-10 flex justify-between items-center p-4 px-4 bg-white mx-auto">
-          <p class="back-btn cursor-pointer text-gray-400">Go Back</p>
-          <button type="submit" form="form-plan" class="cursor-pointer p-2 rounded bg-blue-950 text-white">Next Step</button>
+          <p class="back-btn cursor-pointer text-gray-400 hover:text-black">Go Back</p>
+          <button type="submit" form="form-plan" class="cursor-pointer hover:bg-blue-400 p-2 rounded bg-blue-950 text-white">Next Step</button>
         </div>
     </div>
         `

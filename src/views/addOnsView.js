@@ -3,6 +3,14 @@ class AddOnsView {
     _sideBarEl = document.querySelector('.side-A')
     addOns = [];
 
+    constructor() {
+      this._parentElement.addEventListener('click', function(e) {
+        const labelEl = e.target.closest('label')
+        if (!labelEl) return
+        labelEl.style.borderColor = 'blue'
+      })
+    }
+
     updateSideBar() {
       this._sideBarEl.innerHTML = `
         <div
@@ -98,8 +106,8 @@ class AddOnsView {
         </label>
 
         <div class="absolute bottom-0 w-[85%] flex justify-between items-center p-4 px-4 bg-white mx-auto">
-          <p class="text-gray-400 cursor-pointer back-btn">Go Back</p>
-          <button class="p-2 rounded cursor-pointer bg-blue-950 text-white">Next Step</button>
+          <p class="text-gray-400 cursor-pointer hover:text-black back-btn">Go Back</p>
+          <button class="p-2 rounded cursor-pointer hover:bg-blue-400 bg-blue-950 text-white">Next Step</button>
         </div>
       </form>
     </div>`
@@ -166,6 +174,11 @@ class AddOnsView {
       formMonthly.addEventListener('submit', (e) => {
         e.preventDefault()
         const checkboxes = formMonthly.querySelectorAll('input[name="addOns"]:checked')
+        checkboxes.forEach(cb => {
+          const labelEl = cb.closest('label');
+          console.log(labelEl);
+          labelEl.style.borderColor = 'blue'
+        })
         this.addOns = Array.from(checkboxes).map(cb => {
            return {addOn: cb.value, price: cb.dataset.price }
       })

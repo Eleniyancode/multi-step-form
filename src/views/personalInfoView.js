@@ -10,10 +10,10 @@ class PersonalInfoView {
         
         <form id="info" class="personal-info flex flex-col gap-4">
         <div>
-        <label class="flex flex-col gap-1">
+        <label class="flex flex-col cursor-pointer  gap-1">
         Name
         <span class="error error-name text-[10px]"></span>
-          <input id="name" name="name" class="border-2 border-gray-200 p-2" type="text" placeholder="e.g. Stephen King">
+          <input id="name" name="name" class="border-2 cursor-pointer hover:border-blue-300 border-gray-200 p-2" type="text" placeholder="e.g. Stephen King">
         </label>
         </div>
 
@@ -21,7 +21,7 @@ class PersonalInfoView {
         <label class="flex flex-col gap-1">
         Email Address
         <p class="error error-email text-[10px] text-red-600"></p>
-          <input id="email" name="email" class="border-2 border-gray-200 p-2" type="text" placeholder="e.g. stephen@lorem.com">
+          <input id="email" name="email" class="border-2 cursor-pointer hover:border-blue-300 border-gray-200 p-2" type="text" placeholder="e.g. stephen@lorem.com">
         </label>
         </div>
 
@@ -29,13 +29,13 @@ class PersonalInfoView {
         <label class="flex flex-col gap-1">
         Phone Number
         <p class="error error-phone-number text-[10px] text-red-600"></p>
-          <input id="phone-number" name="phone-number" class="border-2 border-gray-200 p-2" type="text" placeholder="e.g. +1 234 567 890">
+          <input id="phone-number" name="phone-number" class="border-2 cursor-pointer hover:border-blue-300 border-gray-200 p-2" type="text" placeholder="e.g. +1 234 567 890">
         </label>
         </div>
 
         <div class="absolute lg:static bottom-0 w-[85%] flex justify-between items-center p-4 px-4 bg-white mx-auto">
           <p class="text-gray-400 cursor-pointer opacity-0">Go Back</p>
-          <button type="submit" form="info" class="p-2 rounded bg-blue-950 text-white cursor-pointer">Next Step</button>
+          <button type="submit" form="info" class="p-2 rounded bg-blue-950 text-white cursor-pointer hover:bg-blue-300">Next Step</button>
         </div>
       </form>
     </div>
@@ -59,20 +59,26 @@ class PersonalInfoView {
         if (nameValue.value === '') {
             errorName.textContent = 'Please input your name'
             errorName.style.color = 'red'
+            nameValue.style.borderColor = 'red'
           setTimeout(() => {
             errorName.textContent = ''
+            nameValue.style.borderColor = ''
           }, 2000)
           return
         }else if (emailValue.value === '') {
           errorEmail.textContent = "Please input your email"
+          emailValue.style.borderColor = 'red'
           setTimeout(() => {
             errorEmail.textContent = ''
+            emailValue.style.borderColor = ''
           }, 1000)
           return
         }else if (phoneNumberValue.value === '') {
           errorPhonenumber.textContent = "Please input your email"
+          phoneNumberValue.style.borderColor = 'red'
           setTimeout(() => {
             errorPhonenumber.textContent = ''
+            phoneNumberValue.style.borderColor = ''
           }, 1000)
           return
         }else{

@@ -5,13 +5,13 @@ class SideView {
       <div
         class="flex justify-center animate-fade-in lg:justify-start lg:flex-col p-6 gap-4 w-[100%] h-[150px] lg:h-[100%] object-cover bg-[url(/assets/images/bg-sidebar-mobile.svg)] lg:bg-[url(/assets/images/bg-sidebar-desktop.svg)] bg-no-repeat bg-cover bg-center"
       >
-        <div class="flex gap-5 cursor-pointer step-one-btn">
+        <div class="flex gap-5 cursor-pointer hover:text-gray-200 step-one-btn">
           <p
-            class=" w-10 h-10 flex justify-center items-center text-black bg-blue-300 p-2 border-2 border-white rounded-full"
+            class=" w-10 h-10 flex justify-center  items-center text-black bg-blue-300 p-2 border-2 border-white rounded-full"
           >
             1
           </p>
-          <p class="hidden lg:block text-white text-[12px]"><span>STEP 1</span><br />YOUR INFO</p>
+          <p class="hidden lg:block text-white hover:text-gray-200 text-[12px]"><span>STEP 1</span><br />YOUR INFO</p>
         </div>
 
         <div class="flex gap-5 cursor-pointer step-two-btn">
@@ -20,7 +20,7 @@ class SideView {
           >
             2
           </p>
-          <p class="hidden lg:block text-white text-[12px]"><span>STEP 2</span><br />SELECT PLAN</p>
+          <p class="hidden lg:block text-white hover:text-gray-200 text-[12px]"><span>STEP 2</span><br />SELECT PLAN</p>
         </div>
 
         <div class="flex gap-5 cursor-pointer step-three-btn">
@@ -29,7 +29,7 @@ class SideView {
           >
             3
           </p>
-          <p class="hidden lg:block text-white text-[12px]"><span>STEP 3</span><br />ADD-ONS</p>
+          <p class="hidden lg:block text-white hover:text-gray-200 text-[12px]"><span>STEP 3</span><br />ADD-ONS</p>
         </div>
 
         <div class="flex gap-5 cursor-pointer step-four-btn">
@@ -38,7 +38,7 @@ class SideView {
           >
             4
           </p>
-          <p class="hidden lg:block text-white text-[12px]"><span>STEP 4</span><br />SUMMARY</p>
+          <p class="hidden lg:block text-white hover:text-gray-200 text-[12px]"><span>STEP 4</span><br />SUMMARY</p>
         </div>
       </div>
         `
